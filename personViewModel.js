@@ -61,7 +61,6 @@ function personViewModel() {
     };
 	//END CRUD
 	
-	
 	//PAGNIG
 	self.nbPagination = 3;
 	self.nbPaginationOnSite = ko.observableArray([]);
@@ -121,6 +120,3 @@ function personViewModel() {
 	//END PAGING
 };
 ko.applyBindings(new personViewModel());
-
-
-
