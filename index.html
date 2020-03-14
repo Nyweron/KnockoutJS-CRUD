@@ -1,140 +1,142 @@
 <html>
 
 <head>
-    <title>KnockoutJS CRUD App</title>
-    <meta charset='utf-8' />
-    <link rel='stylesheet' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+  <title>KnockoutJS CRUD App</title>
+  <meta charset='utf-8' />
+  <link rel='stylesheet' />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <br />
-    <div class="container">
-        <!-- Trigger/Open The Modal -->
-        <button type="button" class="btn btn-default" id="myBtn">Add new user</button>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Name</th>
-                    <th>Number</th>
-                    <th>Remove</th>
-                    <th>Edit</th>
-                    <th>Details</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: paginated">
-                <tr>
-                    <th>
-                        <span data-bind="text: id"></span>
-                    </th>
-                    <th>
-                        <span data-bind="text: name"></span>
-                    </th>
-                    <th>
-                        <span data-bind="text: number"></span>
-                    </th>
-                    <th>
-                        <a href="#" data-bind="click: $parent.removePerson">Remove</a>
-                    </th>
-                    <th>
-                        <a href="#" id="myBtnEdit" data-bind="click: $parent.editPerson.bind($data)">Edit</a>
-                    </th>
-                    <th>
-                        <a href="#" id="myBtnDetails" data-bind="click: $parent.detailsPerson.bind($data)">Details</a>
-                    </th>
-                </tr>
-            </tbody>
-        </table>
+  <br />
+  <div class="container">
+    <!-- Trigger/Open The Modal -->
+    <button type="button" class="btn btn-default" id="myBtn">Add new user</button>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Name</th>
+          <th>Number</th>
+          <th>Remove</th>
+          <th>Edit</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody data-bind="foreach: paginated">
+        <tr>
+          <th>
+            <span data-bind="text: id"></span>
+          </th>
+          <th>
+            <span data-bind="text: name"></span>
+          </th>
+          <th>
+            <span data-bind="text: number"></span>
+          </th>
+          <th>
+            <a href="#" data-bind="click: $parent.removePerson">Remove</a>
+          </th>
+          <th>
+            <a href="#" id="myBtnEdit" data-bind="click: $parent.editPerson.bind($data)">Edit</a>
+          </th>
+          <th>
+            <a href="#" id="myBtnDetails" data-bind="click: $parent.detailsPerson.bind($data)">Details</a>
+          </th>
+        </tr>
+      </tbody>
+    </table>
 
-        <div style="text-align: center;">
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" data-bind="click: $root.firstPage" href="#">First</a></li>
-                <li class="page-item"><a class="page-link" data-bind="click: $root.previous, visible: $root.hasPrevious" href="#">Previous</a></li>
-                <li data-bind="foreach: nbPaginationOnSite" class="page-item">
-                    <a class="page-link" href="#" data-bind="text: numberr, click: $root.currentPage"></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#" data-bind="click: $root.next, visible: $root.hasNext">Next</a></li>
-                <li class="page-item"><a class="page-link" href="#" data-bind="click: $root.lastPage">Last</a></li>
-            </ul>
-        </div>
+    <div style="text-align: center;">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" data-bind="click: $root.firstPage" href="#">First</a></li>
+        <li class="page-item"><a class="page-link" data-bind="click: $root.previous, visible: $root.hasPrevious"
+            href="#">Previous</a></li>
+        <li data-bind="foreach: nbPaginationOnSite" class="page-item">
+          <a class="page-link" href="#" data-bind="text: numberr, click: $root.currentPage"></a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#"
+            data-bind="click: $root.next, visible: $root.hasNext">Next</a></li>
+        <li class="page-item"><a class="page-link" href="#" data-bind="click: $root.lastPage">Last</a></li>
+      </ul>
     </div>
+  </div>
 </body>
 
 
 <!-- The Modal Add user-->
 <div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content" style="width: 400px;">
-        <div class="modal-header">
-            <span class="close">&times;</span>
-            <h2>Add user</h2>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="usr">Name:</label>
-                <input type="text" class="form-control" id="usr" data-bind="value: perName">
-            </div>
-            <div class="form-group">
-                <label for="nb">Number:</label>
-                <input type="text" class="form-control" id="nb" data-bind="value: perNumber">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-bind="click: addPerson.bind($data)">Add</button>
-            <h3></h3>
-        </div>
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 400px;">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Add user</h2>
     </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr" data-bind="value: perName">
+      </div>
+      <div class="form-group">
+        <label for="nb">Number:</label>
+        <input type="text" class="form-control" id="nb" data-bind="value: perNumber">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-bind="click: addPerson.bind($data)">Add</button>
+      <h3></h3>
+    </div>
+  </div>
 </div>
 
 <!-- The Modal Edit user-->
 <div id="myModalEdit" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content" style="width: 400px;">
-        <div class="modal-header">
-            <span class="closeEdit">&times;</span>
-            <h2>Edit user</h2>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="usr">Name:</label>
-                <input type="text" class="form-control" id="usr" data-bind="value: personName">
-            </div>
-            <div class="form-group">
-                <label for="nb">Number:</label>
-                <input type="text" class="form-control" id="nb" data-bind="value: personNumber">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-bind="click: saveEditPerson.bind($data)">Save Edit</button>
-            <h3></h3>
-        </div>
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 400px;">
+    <div class="modal-header">
+      <span class="closeEdit">&times;</span>
+      <h2>Edit user</h2>
     </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr" data-bind="value: personName">
+      </div>
+      <div class="form-group">
+        <label for="nb">Number:</label>
+        <input type="text" class="form-control" id="nb" data-bind="value: personNumber">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-bind="click: saveEditPerson.bind($data)">Save Edit</button>
+      <h3></h3>
+    </div>
+  </div>
 </div>
 
 <div id="myModalDetails" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content" style="width: 400px;">
-        <div class="modal-header">
-            <span class="closeDetails">&times;</span>
-            <h2>Details user</h2>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="usr">Name:</label>
-                <input disabled type="text" class="form-control" id="usr" data-bind="value: personName">
-            </div>
-            <div class="form-group">
-                <label for="nb">Number:</label>
-                <input disabled type="text" class="form-control" id="nb" data-bind="value: personNumber">
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-bind="click: closeDetailsPerson">close details</button>
-            <h3></h3>
-        </div>
+  <!-- Modal content -->
+  <div class="modal-content" style="width: 400px;">
+    <div class="modal-header">
+      <span class="closeDetails">&times;</span>
+      <h2>Details user</h2>
     </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input disabled type="text" class="form-control" id="usr" data-bind="value: personName">
+      </div>
+      <div class="form-group">
+        <label for="nb">Number:</label>
+        <input disabled type="text" class="form-control" id="nb" data-bind="value: personNumber">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-bind="click: closeDetailsPerson">close details</button>
+      <h3></h3>
+    </div>
+  </div>
 </div>
 
 </html>
